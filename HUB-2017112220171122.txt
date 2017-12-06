@@ -1,0 +1,1 @@
+ID_TRX;Medio Pago;OC;Monto;Fecha creacion;Fecha autorizacion;Fecha actualizacion;Tarjeta de credito;ID_CARRO_COMPRA;ESTADO DE LA TRX;TBF_STATUS;Código autorizacion;T.SETTLED_AMOUNT;T.ID_APPLICATION;T.QUERIED_AFTER_RESPONSE;BF2.REJECT;Cant. Messages

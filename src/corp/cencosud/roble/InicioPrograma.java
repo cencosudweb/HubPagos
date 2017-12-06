@@ -81,6 +81,9 @@ public class InicioPrograma {
 
 				iFechaIni = restarDia(mapArguments.get("-fi"));
 				iFechaFin = restarDia(mapArguments.get("-ff"));
+				
+				//iFechaIni = restarDia("20170101");
+				//iFechaFin = restarDia("20170101");
 
 			}
 			catch (Exception e) {
@@ -88,8 +91,8 @@ public class InicioPrograma {
 				e.printStackTrace();
 			}
 			
-			file1                   = new File(path + "/HUB-" + iFechaIni + ".txt");
-			file2                   = new File(path + "/HUB-Completo-" + iFechaIni + ".txt");
+			file1                   = new File(path + "/HUB-" + iFechaIni + iFechaFin + ".txt");
+			file2                   = new File(path + "/HUB-Completo-" + iFechaIni + iFechaFin + ".txt");
 			
 			sb = new StringBuffer();
 			sb.append("select ");
@@ -140,7 +143,7 @@ public class InicioPrograma {
 			sb.append("T.QUERIED_AFTER_RESPONSE,  ");
 			sb.append("BF2.REJECT ");
 			sb.append("order by T.CREATED ");
-
+			info("[sb]: " + sb);
 
 			pstmt        = dbconnDB2.prepareStatement(sb.toString());
 			sb           = new StringBuffer();
@@ -158,7 +161,7 @@ public class InicioPrograma {
 			bw.write("ID_CARRO_COMPRA;");
 			bw.write("ESTADO DE LA TRX;");
 			bw.write("TBF_STATUS;");
-			bw.write("CÃ³digo autorizacion;");
+			bw.write("Código autorizacion;");
 			bw.write("T.SETTLED_AMOUNT;");
 			bw.write("T.ID_APPLICATION;");
 			bw.write("T.QUERIED_AFTER_RESPONSE;");
@@ -177,7 +180,7 @@ public class InicioPrograma {
 			bw2.write("ID_CARRO_COMPRA;");
 			bw2.write("ESTADO DE LA TRX;");
 			bw2.write("TBF_STATUS;");
-			bw2.write("CÃ³digo autorizacion;");
+			bw2.write("Código autorizacion;");
 			bw2.write("T.SETTLED_AMOUNT;");
 			bw2.write("T.ID_APPLICATION;");
 			bw2.write("T.QUERIED_AFTER_RESPONSE;");
@@ -258,6 +261,7 @@ public class InicioPrograma {
 			sb.append("cast(a.NUMORDEN as char(20)) as Numero_Orden ");
 			sb.append("from CECEBUGD.SVVIF03 a ");
 			sb.append("where a.NUMORDEN = ? ");
+			info("[ejecutarQuery2 sb]: " + sb);
 
 			pstmt = dbconnection.prepareStatement(sb.toString());
 			pstmt.setInt(1, numeroOC);
@@ -290,8 +294,6 @@ public class InicioPrograma {
 		Connection dbconnection = null;
 
 		try {
-
-			System.out.println("AuthenticationScheme: "+o.getVersion());
 			dbconnection = d.connect (o, p, mySchema);
 			System.out.println("Conexion a ROBLE CREADA.");
 		}
@@ -310,7 +312,7 @@ public class InicioPrograma {
 		try {
 
 			Class.forName("com.ibm.db2.jcc.DB2Driver");
-			dbconnection = DriverManager.getConnection("jdbc:db2://spp36db04r:50051/PHUBP01","con_hubp","82ndy78hdjos");
+			dbconnection = DriverManager.getConnection("jdbc:db2://198.61.129.39:50051/PHUBP01","con_hubp","82ndy78hdjos");
 			System.out.println("Conexion a HUB CREADA.");
 		}
 		catch (Exception e) {
